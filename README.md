@@ -1,12 +1,75 @@
-# React + Vite
+````markdown
+# OME WebRTC React Player
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple React interface for testing **WebRTC playback via OvenMediaEngine (OME)**.
 
-Currently, two official plugins are available:
+It allows you to:
+- Enter the WebRTC stream URL (e.g. from OME Edge)
+- Optionally provide a stream password
+- Watch the stream using OvenPlayer
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+> The app is fully Dockerized. No Node.js or Yarn is required on the host machine.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🧱 Tech Stack
+
+- React + Vite
+- OvenPlayer
+- Node.js 20 (build stage)
+- Nginx (static server)
+
+---
+
+## 🚀 Quick Start
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/your-org/ome-react-player.git
+cd ome-react-player
+````
+
+### 2. Build and run the container
+
+```bash
+docker-compose up --build -d
+```
+
+### 3. Open in your browser
+
+```
+http://localhost:3000
+```
+
+You will see a simple UI with:
+
+* Stream URL input (e.g. `ws://your-edge-host:3333/app/stream/master`)
+* Optional password input
+* Connect button to start playback
+
+---
+
+## 📦 Production Build
+
+All assets are built inside the Docker container using `yarn build` (no tools required on the host).
+
+The final app is served via Nginx from `/usr/share/nginx/html`.
+
+---
+
+## ✅ Example WebRTC Stream URL
+
+```
+ws://your-edge-host:3333/app/stream/master
+```
+
+Format:
+
+```
+ws://{OME_HOST}:{SIGNALING_PORT}/{APP_NAME}/{STREAM_NAME}/master
+```
+
+---
+
+
