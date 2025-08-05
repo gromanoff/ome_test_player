@@ -1,0 +1,7 @@
+services:
+  ome-player:
+    build: .
+    container_name: ome-react-player
+    ports:
+      - "3000:80"
+    restart: unless-stopped
